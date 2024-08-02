@@ -1,36 +1,32 @@
+#include <bits/stdc++.h> 
 class Browser
 {
-    vector<string> history;
-	    int pos;
-    	int end;
     public:
+    vector<string>history;
+    int pos;
     Browser(string &homepage)
     {
-        pos = 0;
-        end = 0;
         history.push_back(homepage);
+        pos = 0;
     }
+
     void visit(string &url)
     {
-        pos += 1;
-        if(pos == history.size())
-        {
-            history.push_back(url);
-        }
-        else
-        {
-            history[pos] = url;
-        }
-        end = pos;
+        history.erase(history.begin()+pos+1, history.end());
+        history.push_back(url);
+        pos++;
+
     }
+
     string back(int steps)
     {
         pos = max(0, pos - steps);
         return history[pos];
     }
+
     string forward(int steps)
     {
-        pos = min(end, pos + steps);
+        pos = min((int)history.size() - 1, pos + steps);
         return history[pos];
     }
 };

@@ -19,7 +19,7 @@ public:
     
     int getMin() {
         stack<int>mins = s;
-        int p = 10;
+        int p = 0;
         while(!mins.empty()) {
             if(mins.top()<p){
                 p = mins.top();
